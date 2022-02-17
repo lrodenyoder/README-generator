@@ -31,24 +31,24 @@ const questions = [
       }
     },
   },
-//   {
-//     type: "confirm",
-//     name: "confirmInstallation",
-//     message: "Would you like to include an installation section?",
-//     default: true,
-//   },
-//   {
-//     type: "input",
-//     name: "installation",
-//     message: "What are the installation instructions for your project?",
-//     when: ({ confirmInstallation }) => {
-//       if (confirmInstallation) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     },
-//   },
+  {
+    type: "confirm",
+    name: "confirmInstallation",
+    message: "Would you like to include an installation section?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "installation",
+    message: "What are the installation instructions for your project?",
+    when: ({ confirmInstallation }) => {
+      if (confirmInstallation) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 //   {
 //     type: "confirm",
 //     name: "confirmUsage",
@@ -167,7 +167,10 @@ const writeToFile = (data) => {
         return;
       }
 
-      resolve('File Created!')
+      resolve({
+        ok: true,
+        message: 'File Created!'
+      })
     })
   });
 }
