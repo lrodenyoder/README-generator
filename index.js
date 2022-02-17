@@ -67,28 +67,28 @@ const questions = [
 //       }
 //     },
 //   },
-//   {
-//     type: "confirm",
-//     name: "confirmLicense",
-//     message: "Would you like to include a license?",
-//     default: true,
-//   },
-//   {
-//     type: "list",
-//     name: "license",
-//     message: "Please choose a license to use",
-//     choices: [
-//       "MIT",
-//       //TO DO: include more licenses
-//     ],
-//     when: ({ confirmLicense }) => {
-//       if (confirmLicense) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     },
-//   },
+  {
+    type: "confirm",
+    name: "confirmLicense",
+    message: "Would you like to include a license?",
+    default: true,
+  },
+  {
+    type: "list",
+    name: "license",
+    message: "Please choose a license to use",
+    choices: [
+      "MIT",
+      //TO DO: include more licenses
+    ],
+    when: ({ confirmLicense }) => {
+      if (confirmLicense) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 //   {
 //     type: "input",
 //     name: "fullName",
