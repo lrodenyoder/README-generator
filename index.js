@@ -1,4 +1,4 @@
-// TODO: Include packages needed for this application
+//VARIABLES
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown.js');
 const fs = require("fs");
@@ -49,24 +49,24 @@ const questions = [
       }
     },
   },
-//   {
-//     type: "confirm",
-//     name: "confirmUsage",
-//     message: "Would you like to include a usage section?",
-//     default: true,
-//   },
-//   {
-//     type: "input",
-//     name: "usage",
-//     message: "What is your project used for?",
-//     when: ({ confirmUsage }) => {
-//       if (confirmUsage) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     },
-//   },
+  //   {
+  //     type: "confirm",
+  //     name: "confirmUsage",
+  //     message: "Would you like to include a usage section?",
+  //     default: true,
+  //   },
+  //   {
+  //     type: "input",
+  //     name: "usage",
+  //     message: "What is your project used for?",
+  //     when: ({ confirmUsage }) => {
+  //       if (confirmUsage) {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     },
+  //   },
   {
     type: "confirm",
     name: "confirmLicense",
@@ -79,7 +79,9 @@ const questions = [
     message: "Please choose a license to use",
     choices: [
       "MIT",
+      "GNU Lesser General Public",
       //TO DO: include more licenses
+      //GNU Lesser General Public, Mozilla Public, GNU Affero General Public, The Unilicense, Apache, GNU General Public
     ],
     when: ({ confirmLicense }) => {
       if (confirmLicense) {
@@ -89,71 +91,71 @@ const questions = [
       }
     },
   },
-//   {
-//     type: "input",
-//     name: "fullName",
-//     message: "Please provide your full name",
-//     validate: (nameInput) => {
-//       if (nameInput) {
-//         return true;
-//       } else {
-//         console.log("Please enter your name!");
-//         return false;
-//       }
-//     },
-//     when: ({ confirmLicense }) => {
-//       if (confirmLicense) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     },
-//   },
-//   {
-//     type: "confirm",
-//     name: "confirmContributing",
-//     message:
-//       "Would you like to provide information on how to contribute to this project?",
-//     default: true,
-//   },
-//   {
-//     type: "input",
-//     name: "contributing",
-//     message: "How can others contribute to this project?",
-//     when: ({ confirmUsage }) => {
-//       if (confirmUsage) {
-//         return true;
-//       } else {
-//         return false;
-//       }
-//     },
-//   },
-//   {
-//     type: "input",
-//     name: "github",
-//     message: "Please enter your github username",
-//     validate: (nameInput) => {
-//       if (nameInput) {
-//         return true;
-//       } else {
-//         console.log("Please enter your username!");
-//         return false;
-//       }
-//     },
-//   },
-//   {
-//     type: "input",
-//     name: "email",
-//     message: "Please enter an email where you can be contacted",
-//     validate: (nameInput) => {
-//       if (nameInput) {
-//         return true;
-//       } else {
-//         console.log("Please enter your email!");
-//         return false;
-//       }
-//     },
-//   },
+    {
+      type: "input",
+      name: "fullName",
+      message: "Please provide your full name",
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your name!");
+          return false;
+        }
+      },
+      when: ({ confirmLicense }) => {
+        if (confirmLicense) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+    },
+  //   {
+  //     type: "confirm",
+  //     name: "confirmContributing",
+  //     message:
+  //       "Would you like to provide information on how to contribute to this project?",
+  //     default: true,
+  //   },
+  //   {
+  //     type: "input",
+  //     name: "contributing",
+  //     message: "How can others contribute to this project?",
+  //     when: ({ confirmUsage }) => {
+  //       if (confirmUsage) {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     },
+  //   },
+  //   {
+  //     type: "input",
+  //     name: "github",
+  //     message: "Please enter your github username",
+  //     validate: (nameInput) => {
+  //       if (nameInput) {
+  //         return true;
+  //       } else {
+  //         console.log("Please enter your username!");
+  //         return false;
+  //       }
+  //     },
+  //   },
+  //   {
+  //     type: "input",
+  //     name: "email",
+  //     message: "Please enter an email where you can be contacted",
+  //     validate: (nameInput) => {
+  //       if (nameInput) {
+  //         return true;
+  //       } else {
+  //         console.log("Please enter your email!");
+  //         return false;
+  //       }
+  //     },
+  //   },
 ];
 
 // TODO: Create a function to write README file

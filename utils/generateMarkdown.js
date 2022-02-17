@@ -1,30 +1,48 @@
-//const fs = require('fs');
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+const licenseArray = [
+  {
+    name: "MIT",
+    url: "https://choosealicense.com/licenses/mit/",
+    badge: "https://img.shields.io/badge/license-MIT-blue",
+  },
+  {
+    name: "GNU Lesser General Public",
+    url: "https://choosealicense.com/licenses/gpl-3.0/",
+    badge: "https://img.shields.io/badge/license-GNU%20Lesser%20General%20Public-blue",
+  },
+];
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) { }
-
-const axios = require('axios');
-
-
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-const createLicense = (licenseText) => {
+const renderLicenseBadge = (licenseText) => {
   if (!licenseText) {
     return "";
   }
 
-  axios.get("https://api.github.com/licenses/MIT").then((response) => {
-    console.log(response);
-  });
+  const licName = licenseArray.find(({ name }) => name === licenseText)
 
+  const { name, url, badge } = licName
+  
   return `
-  ## Installation
-  ${licenseText}
+  ![license](${badge})
+  `;
+};
+
+
+const createLicense = (data) => {
+  if (!data.license) {
+    return "";
+  }
+
+  console.log(data, 'LOOK HERE')
+  const licName = licenseArray.find(({ name }) => name === data.license)
+
+  const { name, url, badge } = licName
+  
+  return `
+ ## License
+  ${data.license} License 
+
+  Copyright (c) [${new Date().getFullYear()}] by [${data.fullName}]
+
+  [Click Here](${url}) to go to license details
   `;
 };
 
@@ -50,16 +68,19 @@ const createUsage = usageText => {
   `
 };
 
-
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  console.log(data)
   return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
+
+  ## Description
   ${data.description}
+
   ${createInstallation(data.installation)}
+
   ${createUsage(data.usage)}
-  ${createLicense(data.license)}
+
+  ${createLicense(data)}
 `;
-}
+};
 
 module.exports = generateMarkdown;
