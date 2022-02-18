@@ -48,7 +48,7 @@ const renderLicenseBadge = (licenseText) => {
 
   const licName = licenseArray.find(({ name }) => name === licenseText)
 
-  const { name, url, badge } = licName
+  const { badge } = licName
   
   return `
   ![license](${badge})
@@ -63,6 +63,9 @@ const createInstallation = installationText => {
 
   return `
   ## Installation
+
+  ----------------------------------------------------
+
   ${installationText}
   `
 };
@@ -75,6 +78,9 @@ const createUsage = usageText => {
 
   return `
   ## Usage
+
+  ----------------------------------------
+
   ${usageText}
   `
 };
@@ -87,6 +93,9 @@ const createContribution = contributionText => {
 
   return `
   ## Contribution
+
+  -------------------------------------
+
   ${contributionText}
   `
 };
@@ -99,6 +108,9 @@ const createTesting = testingText => {
 
   return `
   ## Tests
+
+  -------------------------------------
+
   ${testingText}
   `
 };
@@ -112,10 +124,13 @@ const createLicense = (data) => {
 
   const licName = licenseArray.find(({ name }) => name === data.license);
 
-  const { name, url, badge } = licName;
+  const { url } = licName;
   
   return `
  ## License
+
+  -----------------------
+
   ${data.license} License 
 
   Copyright (c) [${new Date().getFullYear()}] by [${data.fullName}]
@@ -124,23 +139,65 @@ const createLicense = (data) => {
   `
 };
 
-const createTableOfContents = (data) => {
-  console.log("working toc", data)
+const createQuestions = (data) => {
+  let { github, email } = data;
 
-  let { title, description, confirmInstallation, github, email } = data;
+  return `
+  ## Questions?
+
+  ---------------------------
+
+  Visit my GitHub profile or shoot me an email!
+
+  GitHub: [${github}](https://github.com/${github})
+
+  ${email}
+  `;
+};
+
+//create ToC including only sections that user has provided
+const createTableOfContents = (data) => {
+  let { confirmInstallation, confirmUsage, confirmLicense, confirmContributing, confirmTesting } = data;
 
   if (!confirmInstallation) {
     confirmInstallation = ''
   } else {
-    confirmInstallation = `- Installation`
+    confirmInstallation = `- **[Installation](#installation)**`
+  }
+  
+  if (!confirmUsage) {
+    confirmUsage = ''
+  } else {
+    confirmUsage = `- **[Usage](#usage)**`
+  }
+
+  if (!confirmLicense) {
+    confirmLicense = ''
+  } else {
+    confirmLicense = `- **[License](#license)**`
+  }
+
+  if (!confirmContributing) {
+    confirmContributing = ''
+  } else {
+    confirmContributing = `- **[Contribution](#contribution)**`
+  }
+
+  if (!confirmTesting) {
+    confirmTesting = ''
+  } else {
+    confirmTesting = `- **[Tests](#tests)**`
   }
 
   return `
-  - test
   ${confirmInstallation}
-
+  ${confirmUsage}
+  ${confirmLicense}
+  ${confirmContributing}
+  ${confirmTesting}
+  - **[Questions](#questions)**
   `
-}
+};
 
 
 //generate markdown text
@@ -149,9 +206,14 @@ function generateMarkdown(data) {
   ${renderLicenseBadge(data.license)}
 
   ## Description
+
+  ----------------------
+
   ${data.description}
 
   ## Table of Contents
+
+  --------------------------
 
   ${createTableOfContents(data)}
 
@@ -159,11 +221,13 @@ function generateMarkdown(data) {
 
   ${createUsage(data.usage)}
   
-  ${createContribution(data.contributing)}
+  ${createLicense(data)}
 
+  ${createContribution(data.contributing)}
+  
   ${createTesting(data.testing)}
 
-  ${createLicense(data)}
+  ${createQuestions(data)}
 `;
 };
 

@@ -48,109 +48,109 @@ const questions = [
       }
     }
   },
-  // {
-  //   type: "confirm",
-  //   name: "confirmUsage",
-  //   message: "Would you like to include a usage section?",
-  //   default: true,
-  // },
-  // {
-  //   type: "input",
-  //   name: "usage",
-  //   message: "Please provide instructions and examples for use",
-  //   when: ({ confirmUsage }) => {
-  //     if (confirmUsage) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
-  // {
-  //   type: "confirm",
-  //   name: "confirmLicense",
-  //   message: "Would you like to include a license?",
-  //   default: true,
-  // },
-  // {
-  //   type: "list",
-  //   name: "license",
-  //   message: "Please choose a license to use",
-  //   choices: [
-  //     "MIT",
-  //     "GNU Lesser General Public",
-  //     'GNU General Public',
-  //     'GNU Affero General Public',
-  //     'Mozilla Public',
-  //     'The Unlicense',
-  //     'Apache'
-  //   ],
-  //   when: ({ confirmLicense }) => {
-  //     if (confirmLicense) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
-  // {
-  //   type: "input",
-  //   name: "fullName",
-  //   message: "Please provide your full name",
-  //   validate: (nameInput) => {
-  //     if (nameInput) {
-  //       return true;
-  //     } else {
-  //       console.log("Please enter your name!");
-  //       return false;
-  //     }
-  //   },
-  //   when: ({ confirmLicense }) => {
-  //     if (confirmLicense) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
-  // {
-  //   type: "confirm",
-  //   name: "confirmContributing",
-  //   message:
-  //     "Would you like to provide information on how to contribute to this project?",
-  //   default: true,
-  // },
-  // {
-  //   type: "input",
-  //   name: "contributing",
-  //   message: "How can others contribute to this project?",
-  //   when: ({ confirmUsage }) => {
-  //     if (confirmUsage) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
-  // {
-  //   type: "confirm",
-  //   name: "confirmTesting",
-  //   message:
-  //     "Would you like to provide any tests for this project?",
-  //   default: true,
-  // },
-  // {
-  //   type: "input",
-  //   name: "testing",
-  //   message: "What tests have been done for this project?",
-  //   when: ({ confirmTesting }) => {
-  //     if (confirmTesting) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
+  {
+    type: "confirm",
+    name: "confirmUsage",
+    message: "Would you like to include a usage section?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "Please provide instructions and examples for use",
+    when: ({ confirmUsage }) => {
+      if (confirmUsage) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmLicense",
+    message: "Would you like to include a license?",
+    default: true,
+  },
+  {
+    type: "list",
+    name: "license",
+    message: "Please choose a license to use",
+    choices: [
+      "MIT",
+      "GNU Lesser General Public",
+      'GNU General Public',
+      'GNU Affero General Public',
+      'Mozilla Public',
+      'The Unlicense',
+      'Apache'
+    ],
+    when: ({ confirmLicense }) => {
+      if (confirmLicense) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "fullName",
+    message: "Please provide your full name",
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter your name!");
+        return false;
+      }
+    },
+    when: ({ confirmLicense }) => {
+      if (confirmLicense) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmContributing",
+    message:
+      "Would you like to provide information on how to contribute to this project?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message: "How can others contribute to this project?",
+    when: ({ confirmUsage }) => {
+      if (confirmUsage) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmTesting",
+    message:
+      "Would you like to provide any tests for this project?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "testing",
+    message: "What tests have been done for this project?",
+    when: ({ confirmTesting }) => {
+      if (confirmTesting) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
   {
     type: "input",
     name: "github",
