@@ -1,9 +1,8 @@
 //VARIABLES
 const inquirer = require('inquirer');
-const generateMarkdown = require('./utils/generateMarkdown.js');
 const fs = require("fs");
-
-// TODO: Create an array of questions for user input
+const generateMarkdown = require('./utils/generateMarkdown.js');
+//prompted questions to get user input
 const questions = [
   {
     type: "input",
@@ -47,26 +46,26 @@ const questions = [
       } else {
         return false;
       }
+    }
+  },
+  {
+    type: "confirm",
+    name: "confirmUsage",
+    message: "Would you like to include a usage section?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "usage",
+    message: "Please provide instructions and examples for use",
+    when: ({ confirmUsage }) => {
+      if (confirmUsage) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
-  //   {
-  //     type: "confirm",
-  //     name: "confirmUsage",
-  //     message: "Would you like to include a usage section?",
-  //     default: true,
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "usage",
-  //     message: "What is your project used for?",
-  //     when: ({ confirmUsage }) => {
-  //       if (confirmUsage) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     },
-  //   },
   {
     type: "confirm",
     name: "confirmLicense",
@@ -80,8 +79,11 @@ const questions = [
     choices: [
       "MIT",
       "GNU Lesser General Public",
-      //TO DO: include more licenses
-      //GNU Lesser General Public, Mozilla Public, GNU Affero General Public, The Unilicense, Apache, GNU General Public
+      'GNU General Public',
+      'GNU Affero General Public',
+      'Mozilla Public',
+      'The Unlicense',
+      'Apache'
     ],
     when: ({ confirmLicense }) => {
       if (confirmLicense) {
@@ -91,77 +93,95 @@ const questions = [
       }
     },
   },
-    {
-      type: "input",
-      name: "fullName",
-      message: "Please provide your full name",
-      validate: (nameInput) => {
-        if (nameInput) {
-          return true;
-        } else {
-          console.log("Please enter your name!");
-          return false;
-        }
-      },
-      when: ({ confirmLicense }) => {
-        if (confirmLicense) {
-          return true;
-        } else {
-          return false;
-        }
-      },
+  {
+    type: "input",
+    name: "fullName",
+    message: "Please provide your full name",
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter your name!");
+        return false;
+      }
     },
-  //   {
-  //     type: "confirm",
-  //     name: "confirmContributing",
-  //     message:
-  //       "Would you like to provide information on how to contribute to this project?",
-  //     default: true,
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "contributing",
-  //     message: "How can others contribute to this project?",
-  //     when: ({ confirmUsage }) => {
-  //       if (confirmUsage) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     },
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "github",
-  //     message: "Please enter your github username",
-  //     validate: (nameInput) => {
-  //       if (nameInput) {
-  //         return true;
-  //       } else {
-  //         console.log("Please enter your username!");
-  //         return false;
-  //       }
-  //     },
-  //   },
-  //   {
-  //     type: "input",
-  //     name: "email",
-  //     message: "Please enter an email where you can be contacted",
-  //     validate: (nameInput) => {
-  //       if (nameInput) {
-  //         return true;
-  //       } else {
-  //         console.log("Please enter your email!");
-  //         return false;
-  //       }
-  //     },
-  //   },
+    when: ({ confirmLicense }) => {
+      if (confirmLicense) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmContributing",
+    message:
+      "Would you like to provide information on how to contribute to this project?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "contributing",
+    message: "How can others contribute to this project?",
+    when: ({ confirmUsage }) => {
+      if (confirmUsage) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "confirm",
+    name: "confirmTesting",
+    message:
+      "Would you like to provide any tests for this project?",
+    default: true,
+  },
+  {
+    type: "input",
+    name: "testing",
+    message: "What tests have been done for this project?",
+    when: ({ confirmTesting }) => {
+      if (confirmTesting) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "github",
+    message: "Please enter your github username",
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter your username!");
+        return false;
+      }
+    },
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Please enter an email where you can be contacted",
+    validate: (nameInput) => {
+      if (nameInput) {
+        return true;
+      } else {
+        console.log("Please enter your email!");
+        return false;
+      }
+    },
+  },
 ];
 
-// TODO: Create a function to write README file
+//FUNCTIONS
+//creates readme file from user input data
 const writeToFile = (data) => {
-  console.log(data);
-  console.log('working index');
   return new Promise((resolve, reject) => {
     fs.writeFile('./dist/README.md', data, err => {
       if (err) {
@@ -175,9 +195,9 @@ const writeToFile = (data) => {
       })
     })
   });
-}
+};
 
-// TODO: Create a function to initialize app
+//initialize app
 const init = readmeData => {
     console.log(`
     ===============
@@ -187,7 +207,7 @@ const init = readmeData => {
     return inquirer.prompt(questions)
 };
 
-// Function call to initialize app
+//call to initialize app
 init()
     .then(data => {
         return generateMarkdown(data);
