@@ -8,7 +8,9 @@
 
   ----------------------
 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  This project uses Node.js in order to generate a formatted README.md file based on user input. Using this generator cuts back on the time to create a professionally formatted README, leaving the user more time to work on the project itself.
+
+  [Click Here]() for a video walkthrough on how to use this generator.
 
 
   ## Installation
@@ -34,6 +36,10 @@ Before the generator can be used, a `dist` folder must be created in the root di
 ...and the Inquirer npm must be installed
 
     npm install inquirer
+
+To initialize the generator, run the following command
+
+    node index.js
    
  ## License
 
