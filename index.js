@@ -124,8 +124,8 @@ const questions = [
     type: "input",
     name: "contributing",
     message: "How can others contribute to this project?",
-    when: ({ confirmUsage }) => {
-      if (confirmUsage) {
+    when: ({ confirmContributing }) => {
+      if (confirmContributing) {
         return true;
       } else {
         return false;
