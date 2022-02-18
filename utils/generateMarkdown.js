@@ -124,6 +124,24 @@ const createLicense = (data) => {
   `
 };
 
+const createTableOfContents = (data) => {
+  console.log("working toc", data)
+
+  let { title, description, confirmInstallation, github, email } = data;
+
+  if (!confirmInstallation) {
+    confirmInstallation = ''
+  } else {
+    confirmInstallation = `- Installation`
+  }
+
+  return `
+  - test
+  ${confirmInstallation}
+
+  `
+}
+
 
 //generate markdown text
 function generateMarkdown(data) {
@@ -132,6 +150,10 @@ function generateMarkdown(data) {
 
   ## Description
   ${data.description}
+
+  ## Table of Contents
+
+  ${createTableOfContents(data)}
 
   ${createInstallation(data.installation)}
 
