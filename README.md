@@ -28,7 +28,7 @@ Clone this repo
   
 Open folder in Visual Studio Code
 
-Before the generator can be used, a `dist` folder must be created in the root directory of the project...
+Before the generator can be used, a `dist` folder must be created in the root directory of the project (where the generated README.md will be written)...
 
     cd README-generator
     mkdir dist

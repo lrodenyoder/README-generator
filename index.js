@@ -1,7 +1,7 @@
 //VARIABLES
-const inquirer = require('inquirer');
+const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require('./utils/generateMarkdown.js');
+const generateMarkdown = require("./utils/generateMarkdown.js");
 //prompted questions to get user input
 const questions = [
   {
@@ -20,7 +20,7 @@ const questions = [
   {
     type: "input",
     name: "description",
-    message: "What is the description of your project",
+    message: "What is the description of your project?",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
@@ -46,7 +46,7 @@ const questions = [
       } else {
         return false;
       }
-    }
+    },
   },
   {
     type: "confirm",
@@ -57,7 +57,7 @@ const questions = [
   {
     type: "input",
     name: "usage",
-    message: "Please provide instructions and examples for use",
+    message: "Please provide instructions and examples for use.",
     when: ({ confirmUsage }) => {
       if (confirmUsage) {
         return true;
@@ -75,15 +75,15 @@ const questions = [
   {
     type: "list",
     name: "license",
-    message: "Please choose a license to use",
+    message: "Please choose a license to use.",
     choices: [
       "MIT",
       "GNU Lesser General Public",
-      'GNU General Public',
-      'GNU Affero General Public',
-      'Mozilla Public',
-      'The Unlicense',
-      'Apache'
+      "GNU General Public",
+      "GNU Affero General Public",
+      "Mozilla Public",
+      "The Unlicense",
+      "Apache",
     ],
     when: ({ confirmLicense }) => {
       if (confirmLicense) {
@@ -96,7 +96,7 @@ const questions = [
   {
     type: "input",
     name: "fullName",
-    message: "Please provide your full name",
+    message: "Please provide your full name.",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
@@ -135,14 +135,13 @@ const questions = [
   {
     type: "confirm",
     name: "confirmTesting",
-    message:
-      "Would you like to provide any tests for this project?",
+    message: "Would you like to provide any tests for this project?",
     default: true,
   },
   {
     type: "input",
     name: "testing",
-    message: "What tests have been done for this project?",
+    message: "What tests can be done for project?",
     when: ({ confirmTesting }) => {
       if (confirmTesting) {
         return true;
@@ -154,7 +153,7 @@ const questions = [
   {
     type: "input",
     name: "github",
-    message: "Please enter your github username",
+    message: "Please enter your github username.",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
@@ -167,7 +166,7 @@ const questions = [
   {
     type: "input",
     name: "email",
-    message: "Please enter an email where you can be contacted",
+    message: "Please enter an email where you can be contacted.",
     validate: (nameInput) => {
       if (nameInput) {
         return true;
@@ -183,7 +182,7 @@ const questions = [
 //creates readme file from user input data
 const writeToFile = (data) => {
   return new Promise((resolve, reject) => {
-    fs.writeFile('./dist/README.md', data, err => {
+    fs.writeFile("./dist/README.md", data, (err) => {
       if (err) {
         reject(err);
         return;
@@ -191,33 +190,33 @@ const writeToFile = (data) => {
 
       resolve({
         ok: true,
-        message: 'File Created!'
-      })
-    })
+        message: "File Created!",
+      });
+    });
   });
 };
 
 //initialize app
-const init = readmeData => {
-    console.log(`
+const init = (readmeData) => {
+  console.log(`
     ===============
     Create a README
     ===============
-    `)
-    return inquirer.prompt(questions)
+    `);
+  return inquirer.prompt(questions);
 };
 
 //call to initialize app
 init()
-    .then(data => {
-        return generateMarkdown(data);
-    })
-    .then(markdownData => {
-        return writeToFile(markdownData);
-    })
-  .then(writeFileResponse => {
+  .then((data) => {
+    return generateMarkdown(data);
+  })
+  .then((markdownData) => {
+    return writeToFile(markdownData);
+  })
+  .then((writeFileResponse) => {
     console.log(writeFileResponse);
   })
-    .catch(err => {
-        console.log(err);
-    });
+  .catch((err) => {
+    console.log(err);
+  });

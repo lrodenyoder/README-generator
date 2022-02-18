@@ -46,13 +46,13 @@ const renderLicenseBadge = (licenseText) => {
     return "";
   }
 
-  const licName = licenseArray.find(({ name }) => name === licenseText)
+  const licName = licenseArray.find(({ name }) => name === licenseText);
 
-  const { badge } = licName
+  const { badge } = licName;
   
   return `
   ![license](${badge})
-  `;
+  `
 };
 
 //check if installation section included
@@ -115,7 +115,6 @@ const createTesting = testingText => {
   `
 };
 
-
 //check if license section included
 const createLicense = (data) => {
   if (!data.license) {
@@ -135,7 +134,7 @@ const createLicense = (data) => {
 
   Copyright (c) [${new Date().getFullYear()}] by [${data.fullName}]
 
-  [Click Here](${url}) to go to license details
+  [Click Here](${url}) to go to license details.
   `
 };
 
@@ -152,7 +151,7 @@ const createQuestions = (data) => {
   GitHub: [${github}](https://github.com/${github})
 
   ${email}
-  `;
+  `
 };
 
 //create ToC including only sections that user has provided
@@ -162,31 +161,31 @@ const createTableOfContents = (data) => {
   if (!confirmInstallation) {
     confirmInstallation = ''
   } else {
-    confirmInstallation = `- **[Installation](#installation)**`
+    confirmInstallation = `- [Installation](#installation)`
   }
   
   if (!confirmUsage) {
     confirmUsage = ''
   } else {
-    confirmUsage = `- **[Usage](#usage)**`
+    confirmUsage = `- [Usage](#usage)`
   }
 
   if (!confirmLicense) {
     confirmLicense = ''
   } else {
-    confirmLicense = `- **[License](#license)**`
+    confirmLicense = `- [License](#license)`
   }
 
   if (!confirmContributing) {
     confirmContributing = ''
   } else {
-    confirmContributing = `- **[Contribution](#contribution)**`
+    confirmContributing = `- [Contribution](#contribution)`
   }
 
   if (!confirmTesting) {
     confirmTesting = ''
   } else {
-    confirmTesting = `- **[Tests](#tests)**`
+    confirmTesting = `- [Tests](#tests)`
   }
 
   return `
@@ -195,7 +194,7 @@ const createTableOfContents = (data) => {
   ${confirmLicense}
   ${confirmContributing}
   ${confirmTesting}
-  - **[Questions](#questions)**
+  - [Questions](#questions)
   `
 };
 
