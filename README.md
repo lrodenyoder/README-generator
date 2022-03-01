@@ -10,7 +10,7 @@
 
   This project uses Node.js in order to generate a formatted README.md file based on user input. Using this generator cuts back on the time to create a professionally formatted README, leaving the user more time to work on the project itself.
 
-  [Click Here]() for a video walkthrough on how to use this generator.
+  [Click Here](https://drive.google.com/file/d/1u-I6Q5uNQ9avWWEDu-VXFx9gKRYIbFvl/view) for a video walkthrough on how to use this generator.
 
 
   ## Installation
